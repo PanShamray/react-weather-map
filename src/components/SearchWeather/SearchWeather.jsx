@@ -1,4 +1,4 @@
-import React, { useState/* , useEffect */ } from "react";
+import React, { useState , useEffect } from "react";
 import { weatherApiResponse } from "../../utils/weatherApiResponse";
  import { getWindDirection } from "../../utils/getWindDirection";
 
@@ -13,8 +13,7 @@ function SearchWeather() {
   
   const handleSubmitForm = (event) => {
     event.preventDefault();
-    weatherApiResponse(apiUrl,setWeatherData);
-    setCityName('');
+    weatherApiResponse(apiUrl, setWeatherData);
   }
 
   const handleInputChange = (event) => {
@@ -22,13 +21,18 @@ function SearchWeather() {
   };
 
 
- /*  useEffect(() => {
-    const interval = setInterval(() => {
-        weatherApiResponse(apiUrl, setWeatherData);
-    }, 500);
+   useEffect(() => {
+       const interval = setInterval(() => {
+         weatherApiResponse(apiUrl, setWeatherData);
+         console.log( cityName,"запит + 1");
+       }, 30000);
 
-    return () => { clearInterval(interval) }
-  }, [apiUrl]); */
+       return () => {
+         clearInterval(interval);
+       };
+     },
+     [cityName, apiUrl]
+   );
 
 
   return (
