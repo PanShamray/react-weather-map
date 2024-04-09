@@ -5,7 +5,7 @@ import SearchWeather from './components/SearchWeather';
 
 function App() {
   return (
-    <div>
+    <div className='app'>
       <SearchWeather />
     </div>
   );

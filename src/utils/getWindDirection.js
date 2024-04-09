@@ -8,11 +8,11 @@ export function getWindDirection(windDeg) {
   } else if (windDeg >= 61 && windDeg <= 120) {
     value = "Західний";
   } else if (windDeg >= 121 && windDeg <= 150) {
-    value = "Південно Західний";
+    value = "Південно Східний";
   } else if (windDeg >= 151 && windDeg <= 210) {
     value = "Південний";
   } else if (windDeg >= 211 && windDeg <= 240) {
-    value = "Південно Східний";
+    value = "Південно Західний";
   } else if (windDeg >= 241 && windDeg <= 300) {
     value = "Східний";
   } else if (windDeg >= 301 && windDeg <= 330) {
