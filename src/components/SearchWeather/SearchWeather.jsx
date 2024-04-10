@@ -14,18 +14,16 @@ function SearchWeather() {
   const handleSubmitForm = (event) => {
     event.preventDefault();
     weatherApiResponse(apiUrl, setWeatherData);
-    
   };
 
   const handleInputChange = (event) => {
     setCityName(event.target.value);
-    
   };
 
   useEffect(() => {
     const interval = setInterval(() => {
       weatherApiResponse(apiUrl, setWeatherData);
-    }, 60 * 1000);
+    }, 180 * 1000);
 
     return () => {
       clearInterval(interval);
@@ -47,13 +45,16 @@ function SearchWeather() {
         {weatherData && weatherData.name && (
           <>
             <div className="weather-wrapper__mainInfo">
+              
               <div className="weather-wrapper__name-temp">
+                
                 <div className="weather-wrapper__mainInfo__name">
                   {weatherData.name}
                 </div>
                 <div className="weather-wrapper__mainInfo__temp">
                   {Math.round(weatherData.main.temp)}°
                 </div>
+
               </div>
 
               <div>
@@ -64,12 +65,14 @@ function SearchWeather() {
             </div>
 
             <div className="weather-wrapper__otherInfo">
+              
               <div className="weather-wrapper__otherInfo__wind">
                 Вітер: {weatherData.wind.speed} м/с
               </div>
               <div className="weather-wrapper__otherInfo__windDir">
                 {getWindDirection(weatherData.wind.deg)}
               </div>
+
             </div>
           </>
         )}
