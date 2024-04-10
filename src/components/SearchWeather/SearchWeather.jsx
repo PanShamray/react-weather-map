@@ -4,16 +4,18 @@ import React, { useState, useEffect } from "react";
 import { weatherApiResponse } from "../../utils/weatherApiResponse";
 import { getWindDirection } from "../../utils/getWindDirection";
 
+import { WEATHER_REFRESH_INTERVAL, API_KEY } from "../../utils/constants";
+
 function SearchWeather() {
   const [cityName, setCityName] = useState("");
   const [weatherData, setWeatherData] = useState([]);
 
-  const apiKey = "f36464ed89d663794630263c14054ea2";
-  const apiUrl = `http://api.openweathermap.org/data/2.5/weather?q=${cityName}&units=metric&lang=ua&APPID=${apiKey}`;
+  const apiUrl = `http://api.openweathermap.org/data/2.5/weather?q=${cityName}&units=metric&lang=ua&APPID=${API_KEY}`;
 
   const handleSubmitForm = (event) => {
     event.preventDefault();
     weatherApiResponse(apiUrl, setWeatherData);
+    setCityName('');
   };
 
   const handleInputChange = (event) => {
@@ -23,7 +25,7 @@ function SearchWeather() {
   useEffect(() => {
     const interval = setInterval(() => {
       weatherApiResponse(apiUrl, setWeatherData);
-    }, 180 * 1000);
+    }, WEATHER_REFRESH_INTERVAL);
 
     return () => {
       clearInterval(interval);
@@ -40,10 +42,8 @@ function SearchWeather() {
           placeholder="Введіть місто"
         ></input>
       </form>
-
-      <div className="weather-wrapper" >
         {weatherData && weatherData.name && (
-          <>
+          <div className="weather-wrapper" >
             <div className="weather-wrapper__mainInfo">
               
               <div className="weather-wrapper__name-temp">
@@ -74,9 +74,9 @@ function SearchWeather() {
               </div>
 
             </div>
-          </>
+          </div>
         )}
-      </div>
+      
     </>
   );
 }

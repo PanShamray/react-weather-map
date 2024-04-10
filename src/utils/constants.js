@@ -1,0 +1,2 @@
+export const WEATHER_REFRESH_INTERVAL = 180 * 1000; // 30 MIN
+export const API_KEY = "f36464ed89d663794630263c14054ea2";
