@@ -42,41 +42,41 @@ function SearchWeather() {
           placeholder="Введіть місто"
         ></input>
       </form>
-        {weatherData && weatherData.name && (
-          <div className="weather-wrapper" >
-            <div className="weather-wrapper__mainInfo">
-              
-              <div className="weather-wrapper__name-temp">
-                
-                <div className="weather-wrapper__mainInfo__name">
-                  {weatherData.name}
-                </div>
-                <div className="weather-wrapper__mainInfo__temp">
-                  {Math.round(weatherData.main.temp)}°
-                </div>
-
+      {weatherData && weatherData.name && (
+        <div className="weather-wrapper">
+          <div className="weather-wrapper__mainInfo">
+            <div className="weather-wrapper__name-temp">
+              <div className="weather-wrapper__mainInfo__name">
+                {weatherData.name}
               </div>
-
-              <div>
-                <div className="weather-wrapper__mainInfo__desc">
-                  {weatherData.weather[0].description}
-                </div>
+              <div className="weather-wrapper__mainInfo__temp">
+                {Math.round(weatherData.main.temp)}°
               </div>
             </div>
 
-            <div className="weather-wrapper__otherInfo">
-              
-              <div className="weather-wrapper__otherInfo__wind">
-                Вітер: {weatherData.wind.speed} м/с
+            <div>
+              <div className="weather-wrapper__mainInfo__desc">
+                {weatherData.weather[0].description}
               </div>
-              <div className="weather-wrapper__otherInfo__windDir">
-                {getWindDirection(weatherData.wind.deg)}
+              <div className="weather-wrapper__mainInfo__img">
+                <img
+                  src={`http://openweathermap.org/img/w/${weatherData.weather[0].icon}.png`}
+                  alt=''
+                />
               </div>
-
             </div>
           </div>
-        )}
-      
+
+          <div className="weather-wrapper__otherInfo">
+            <div className="weather-wrapper__otherInfo__wind">
+              Вітер: {weatherData.wind.speed} м/с
+            </div>
+            <div className="weather-wrapper__otherInfo__windDir">
+              {getWindDirection(weatherData.wind.deg)}
+            </div>
+          </div>
+        </div>
+      )}
     </>
   );
 }
