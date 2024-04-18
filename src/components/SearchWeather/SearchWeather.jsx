@@ -1,14 +1,15 @@
 import "./style.css";
 
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { weatherApiResponse } from "../../utils/weatherApiResponse";
 import { getWindDirection } from "../../utils/getWindDirection";
 
 import { WEATHER_REFRESH_INTERVAL, API_KEY } from "../../utils/constants";
 
 function SearchWeather() {
-  const [cityName, setCityName] = useState("Дніпро");
+  const [cityName, setCityName] = useState("Київ");
   const [weatherData, setWeatherData] = useState(null);
+  const prevCityNameRef = useRef(cityName);
 
   const apiUrl = `http://api.openweathermap.org/data/2.5/weather?q=${cityName}&units=metric&lang=ua&APPID=${API_KEY}`;
 
@@ -22,8 +23,15 @@ function SearchWeather() {
     setCityName(event.target.value);
   };
 
+  const handleCityButtonClick = (city) => {
+    setCityName(city);
+  }
+
   useEffect(() => {
-    weatherApiResponse(apiUrl, setWeatherData);
+    if (prevCityNameRef.current !== cityName) {
+      weatherApiResponse(apiUrl, setWeatherData);
+      prevCityNameRef.current = cityName;
+    }
     
     const interval = setInterval(() => {
       weatherApiResponse(apiUrl, setWeatherData);
@@ -44,6 +52,15 @@ function SearchWeather() {
           placeholder="Введіть місто"
         ></input>
       </form>
+      <div className="btns-wrapper">
+        <button onClick={() => handleCityButtonClick("Дніпро")}>Дніпро</button>
+        <button onClick={() => handleCityButtonClick("Львів")}>Львів</button>
+        <button onClick={() => handleCityButtonClick("Одеса")}>Одеса</button>
+        <button onClick={() => handleCityButtonClick("Харків")}>Харків</button>
+        <button onClick={() => handleCityButtonClick("Запоріжжя")}>
+          Запоріжжя
+        </button>
+      </div>
       {weatherData && weatherData.name && (
         <div className="weather-wrapper">
           <div className="weather-wrapper__mainInfo">
@@ -62,8 +79,8 @@ function SearchWeather() {
               </div>
               <div className="weather-wrapper__mainInfo__img">
                 <img
-                  src={`http://openweathermap.org/img/w/${weatherData.weather[0].icon}.png`}
-                  alt=''
+                  src={`http://openweathermap.org/img/wn/${weatherData.weather[0].icon}.png`}
+                  alt=""
                 />
               </div>
             </div>
