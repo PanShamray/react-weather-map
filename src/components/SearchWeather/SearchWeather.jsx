@@ -39,7 +39,6 @@ function SearchWeather() {
       <form onSubmit={handleSubmitForm}>
         <input
           type="text"
-          value={cityName}
           onChange={handleInputChange}
           placeholder="Введіть місто"
         ></input>
