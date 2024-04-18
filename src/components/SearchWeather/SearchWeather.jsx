@@ -7,8 +7,8 @@ import { getWindDirection } from "../../utils/getWindDirection";
 import { WEATHER_REFRESH_INTERVAL, API_KEY } from "../../utils/constants";
 
 function SearchWeather() {
-  const [cityName, setCityName] = useState("");
-  const [weatherData, setWeatherData] = useState([]);
+  const [cityName, setCityName] = useState("Дніпро");
+  const [weatherData, setWeatherData] = useState(null);
 
   const apiUrl = `http://api.openweathermap.org/data/2.5/weather?q=${cityName}&units=metric&lang=ua&APPID=${API_KEY}`;
 
@@ -23,6 +23,8 @@ function SearchWeather() {
   };
 
   useEffect(() => {
+    weatherApiResponse(apiUrl, setWeatherData);
+
     const interval = setInterval(() => {
       weatherApiResponse(apiUrl, setWeatherData);
     }, WEATHER_REFRESH_INTERVAL);
