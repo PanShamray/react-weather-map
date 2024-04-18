@@ -24,7 +24,7 @@ function SearchWeather() {
 
   useEffect(() => {
     weatherApiResponse(apiUrl, setWeatherData);
-
+    
     const interval = setInterval(() => {
       weatherApiResponse(apiUrl, setWeatherData);
     }, WEATHER_REFRESH_INTERVAL);
@@ -40,6 +40,7 @@ function SearchWeather() {
         <input
           type="text"
           onChange={handleInputChange}
+          value={cityName}
           placeholder="Введіть місто"
         ></input>
       </form>
