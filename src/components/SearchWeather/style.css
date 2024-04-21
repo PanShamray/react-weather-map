@@ -17,21 +17,28 @@ input{
     width: 150px;
     border-radius: 4px;
 }
+/* city button */
 .btns-wrapper button{
     padding: 8px;
     margin: 2px;
     border-radius: 4px;
     border: none;
     font-family: 'Comfortaa', sans-serif;
-    background-color:rgb(220, 214, 236)
+    background-color:rgb(220, 214, 236);
+    transition: background-color 0.25s ease-in-out;
+    cursor:pointer;
+}
+.btns-wrapper button:hover{
+    background-color: #887ebc;
+}
+.btns-wrapper button:active{
+    background-color: #574f7d;
 }
 .weather-wrapper{
-    
     margin-top: 16px;
     padding: 8px;
     width: 300px;
 
-    
     border-radius: 24px;
     
     background: #95adbe;  /* fallback for old browsers */
@@ -51,6 +58,7 @@ input{
     border-radius: 16px;
     
 }
+/* wind info */
 .weather-wrapper__otherInfo {
     display: flex;
     align-items: center;
@@ -60,13 +68,34 @@ input{
     /* border: 1px solid black; */
     border-radius: 16px;
 }
+/* weather temp */
 .weather-wrapper__mainInfo__temp{
     font-family: 'Barlow', sans-serif;
     font-weight: 500;
     font-size: 45px;
 }
-.weather-wrapper__mainInfo__img{
+/* weather icon */
+.weather-wrapper__mainInfo__icon{
     display: flex;
     align-items: center;
     justify-content: center;
+}
+/* loader */
+.loader {
+    margin-left: 45%;
+    width: 45px;
+    aspect-ratio: .75;
+    --c: no-repeat linear-gradient(#1a406a 0 0);
+    background: 
+        var(--c) 0%   50%,
+        var(--c) 50%  50%,
+        var(--c) 100% 50%;
+    background-size: 20% 50%;
+    animation: l6 1s infinite linear;
+}
+@keyframes l6 {
+    20% {background-position: 0% 0%  ,50% 50% ,100% 50% }
+    40% {background-position: 0% 100%,50% 0%  ,100% 50% }
+    60% {background-position: 0% 50% ,50% 100%,100% 0%  }
+    80% {background-position: 0% 50% ,50% 50% ,100% 100%}
 }

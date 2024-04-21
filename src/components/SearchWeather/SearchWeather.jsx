@@ -4,7 +4,7 @@ import React, { useState, useEffect, useRef } from "react";
 import { weatherApiResponse } from "../../utils/weatherApiResponse";
 import { getWindDirection } from "../../utils/getWindDirection";
 
-import { WEATHER_REFRESH_INTERVAL, API_KEY } from "../../utils/constants";
+import { API_KEY } from "../../utils/constants";
 
 function SearchWeather() {
   const [cityName, setCityName] = useState("Київ");
@@ -32,15 +32,11 @@ function SearchWeather() {
       weatherApiResponse(apiUrl, setWeatherData);
       prevCityNameRef.current = cityName;
     }
-    
-    const interval = setInterval(() => {
-      weatherApiResponse(apiUrl, setWeatherData);
-    }, WEATHER_REFRESH_INTERVAL);
-
-    return () => {
-      clearInterval(interval);
-    };
   }, [cityName, apiUrl]);
+
+  useEffect(() => {
+    weatherApiResponse(apiUrl, setWeatherData);
+  }, [apiUrl]);
 
   return (
     <>
@@ -54,14 +50,15 @@ function SearchWeather() {
       </form>
       <div className="btns-wrapper">
         <button onClick={() => handleCityButtonClick("Дніпро")}>Дніпро</button>
+        <button onClick={() => handleCityButtonClick("Харків")}>Харків</button>
         <button onClick={() => handleCityButtonClick("Львів")}>Львів</button>
         <button onClick={() => handleCityButtonClick("Одеса")}>Одеса</button>
-        <button onClick={() => handleCityButtonClick("Харків")}>Харків</button>
         <button onClick={() => handleCityButtonClick("Запоріжжя")}>
           Запоріжжя
         </button>
       </div>
-      {weatherData && weatherData.name && (
+
+      {weatherData ? (
         <div className="weather-wrapper">
           <div className="weather-wrapper__mainInfo">
             <div className="weather-wrapper__name-temp">
@@ -77,7 +74,7 @@ function SearchWeather() {
               <div className="weather-wrapper__mainInfo__desc">
                 {weatherData.weather[0].description}
               </div>
-              <div className="weather-wrapper__mainInfo__img">
+              <div className="weather-wrapper__mainInfo__icon">
                 <img
                   src={`http://openweathermap.org/img/wn/${weatherData.weather[0].icon}.png`}
                   alt=""
@@ -95,6 +92,8 @@ function SearchWeather() {
             </div>
           </div>
         </div>
+      ) : (
+        <div className="loader"></div>
       )}
     </>
   );
