@@ -1,4 +1,10 @@
-export function weatherApiResponse(apiUrl, valueShouldToUpdate) {
+export function weatherApiResponse(
+  apiUrl,
+  valueShouldToUpdate,
+  shouldSlice = false,
+  start = null,
+  end = null
+) {
   fetch(apiUrl)
     .then((response) => {
       if (!response.ok) {
@@ -6,6 +12,16 @@ export function weatherApiResponse(apiUrl, valueShouldToUpdate) {
       }
       return response.json();
     })
-    .then((data) => valueShouldToUpdate(data))
+    .then((data) => {
+      if (shouldSlice) {
+        const slicedData =
+          start !== null && end !== null
+            ? data.list.slice(start, end)
+            : data.list;
+        valueShouldToUpdate(slicedData);
+      } else {
+        valueShouldToUpdate(data);
+      }
+    })
     .catch((error) => console.error("Error:", error));
 }

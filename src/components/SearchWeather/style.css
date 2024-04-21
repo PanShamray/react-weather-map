@@ -18,6 +18,10 @@ input{
     border-radius: 4px;
 }
 /* city button */
+.btns-wrapper{
+    display: flex;
+    justify-content: space-between;
+}
 .btns-wrapper button{
     padding: 8px;
     margin: 2px;
@@ -37,7 +41,7 @@ input{
 .weather-wrapper{
     margin-top: 16px;
     padding: 8px;
-    width: 300px;
+    width: fit-content;
 
     border-radius: 24px;
     

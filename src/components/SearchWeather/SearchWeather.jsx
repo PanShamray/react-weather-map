@@ -1,9 +1,12 @@
 import "./style.css";
 
+//react && components
 import React, { useState, useEffect, useRef } from "react";
+import HourlyForecast from "../HourlyForecast";
+
+//utils
 import { weatherApiResponse } from "../../utils/weatherApiResponse";
 import { getWindDirection } from "../../utils/getWindDirection";
-
 import { API_KEY } from "../../utils/constants";
 
 function SearchWeather() {
@@ -90,6 +93,10 @@ function SearchWeather() {
             <div className="weather-wrapper__otherInfo__windDir">
               {getWindDirection(weatherData.wind.deg)}
             </div>
+          </div>
+
+          <div className="weather-wrapper__hourly">
+            <HourlyForecast cityName={cityName} />
           </div>
         </div>
       ) : (
