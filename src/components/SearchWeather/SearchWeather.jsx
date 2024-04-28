@@ -1,4 +1,4 @@
-import "./style.css";
+import "./style.scss";
 
 //react && components
 import React, { useState, useEffect, useRef } from "react";
@@ -52,13 +52,11 @@ function SearchWeather() {
         ></input>
       </form>
       <div className="btns-wrapper">
+        <button onClick={() => handleCityButtonClick("Київ")}>Київ</button>
         <button onClick={() => handleCityButtonClick("Дніпро")}>Дніпро</button>
         <button onClick={() => handleCityButtonClick("Харків")}>Харків</button>
         <button onClick={() => handleCityButtonClick("Львів")}>Львів</button>
         <button onClick={() => handleCityButtonClick("Одеса")}>Одеса</button>
-        <button onClick={() => handleCityButtonClick("Запоріжжя")}>
-          Запоріжжя
-        </button>
       </div>
 
       {weatherData ? (

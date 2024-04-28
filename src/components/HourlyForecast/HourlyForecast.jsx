@@ -1,4 +1,4 @@
-import "./style.css";
+import "./style.scss";
 
 //react && components
 import React, { useState, useEffect } from "react";
@@ -30,6 +30,7 @@ function HourlyForecast({ cityName }) {
               </div>
             ))}
           </div>
+          // TODO: Create next component with daily forecast
         ) : (
           <div className="loader"></div>
         )}
