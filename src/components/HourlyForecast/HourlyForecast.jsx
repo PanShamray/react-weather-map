@@ -30,7 +30,6 @@ function HourlyForecast({ cityName }) {
               </div>
             ))}
           </div>
-          // TODO: Create next component with daily forecast
         ) : (
           <div className="loader"></div>
         )}
