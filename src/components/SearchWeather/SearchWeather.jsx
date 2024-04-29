@@ -77,7 +77,7 @@ function SearchWeather() {
               </div>
               <div className="weather-wrapper__mainInfo__icon">
                 <img
-                  src={`http://openweathermap.org/img/wn/${weatherData.weather[0].icon}.png`}
+                  src={`https://openweathermap.org/img/wn/${weatherData.weather[0].icon}.png`}
                   alt=""
                 />
               </div>
