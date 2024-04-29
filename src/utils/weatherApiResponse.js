@@ -8,7 +8,7 @@ export function weatherApiResponse(
   fetch(apiUrl)
     .then((response) => {
       if (!response.ok) {
-        throw new Error('Негативна відповідь мережі');
+        throw new Error('Щось пішло не так');
       }
       return response.json();
     })
@@ -23,5 +23,5 @@ export function weatherApiResponse(
         valueShouldToUpdate(data);
       }
     })
-    .catch((error) => console.error("Error:", error));
+    .catch((error) => console.error(error));
 }
