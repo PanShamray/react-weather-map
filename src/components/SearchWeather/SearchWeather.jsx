@@ -14,7 +14,7 @@ function SearchWeather() {
   const [weatherData, setWeatherData] = useState(null);
   const prevCityNameRef = useRef(cityName);
 
-  const apiUrl = `http://api.openweathermap.org/data/2.5/weather?q=${cityName}&units=metric&lang=ua&APPID=${API_KEY}`;
+  const apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${cityName}&units=metric&lang=ua&APPID=${API_KEY}`;
 
   const handleSubmitForm = (event) => {
     event.preventDefault();

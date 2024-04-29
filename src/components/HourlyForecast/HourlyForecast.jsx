@@ -23,7 +23,7 @@ function HourlyForecast({ cityName }) {
               <div key={index} className="hourly-forecast-item">
                 <div>{formatHour(forecast.dt_txt)}</div>
                 <img
-                  src={`http://openweathermap.org/img/wn/${forecast.weather[0].icon}.png`}
+                  src={`https://openweathermap.org/img/wn/${forecast.weather[0].icon}.png`}
                   alt=""
                 />
                 <div>{Math.round(forecast.main.temp)}°</div>
